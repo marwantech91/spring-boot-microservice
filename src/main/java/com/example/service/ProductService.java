@@ -135,6 +135,11 @@ public class ProductService {
                 .toList();
     }
 
+    @Transactional(readOnly = true)
+    public long countAll() {
+        return productRepository.count();
+    }
+
     private void publishEvent(String topic, Object event) {
         try {
             kafkaTemplate.send(topic, event);
