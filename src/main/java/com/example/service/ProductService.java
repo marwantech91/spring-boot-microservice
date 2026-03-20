@@ -140,6 +140,11 @@ public class ProductService {
         return productRepository.count();
     }
 
+    @Transactional(readOnly = true)
+    public boolean existsById(Long id) {
+        return productRepository.existsById(id);
+    }
+
     private void publishEvent(String topic, Object event) {
         try {
             kafkaTemplate.send(topic, event);
