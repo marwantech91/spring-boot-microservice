@@ -24,6 +24,9 @@ public class CorsConfig {
         config.setAllowedMethods(Arrays.asList(
             "GET", "POST", "PUT", "PATCH", "DELETE", "OPTIONS"
         ));
+        config.setExposedHeaders(Arrays.asList(
+            "X-Total-Count", "X-Request-Id"
+        ));
         config.setMaxAge(3600L);
 
         UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
