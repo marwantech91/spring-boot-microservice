@@ -145,6 +145,13 @@ public class ProductService {
         return productRepository.existsById(id);
     }
 
+    @Transactional(readOnly = true)
+    public List<ProductDTO> findByNameContaining(String keyword) {
+        return productRepository.findByNameContainingIgnoreCase(keyword).stream()
+                .map(ProductDTO::from)
+                .toList();
+    }
+
     private void publishEvent(String topic, Object event) {
         try {
             kafkaTemplate.send(topic, event);
